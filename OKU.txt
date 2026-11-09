@@ -1,0 +1,118 @@
+JAGUAR FLOOR — KANAL KURULUMU
+==============================
+
+Takim: Jacksonville Jaguars | Stadyum: EverBank Stadium
+Kadroda Trevor Lawrence, Brian Thomas Jr., Travis Hunter, Travis Etienne,
+Travon Walker, Josh Hines-Allen, Jessie Bates III, Foyesade Oluokun.
+
+Bas antrenor LIAM COEN, genel menajer JAMES GLADSTONE — ikisi de 2025'te
+geldi, Doug Pederson ve Trent Baalke donemi bitti.
+
+Yedek quarterback Quinn Ewers. Jakobi Meyers bu sezon kadroda.
+
+
+DEPO ADI — DIKKAT
+-----------------
+GitHub depo adinda BOSLUK kabul etmiyor. "Jaguar Floor" yazdiysan GitHub
+bunu otomatik olarak "Jaguar-Floor" yapmistir. Ses otomasyonuna eklerken
+ve Current repository'de gordugun ad tireli olandir:
+
+  Jaguar-Floor
+
+Tam adi GitHub'da deponun ustunde yazdigi gibi kullan.
+
+
+UZUNLUK — VIKINGS/BILLS/BEARS AYARI
+-----------------------------------
+25.000 karakterlik (~28 dakikalik) videolara gore kuruldu:
+
+  body_cut          3.9    (kisa videolu kanallarda 3.4)
+  overlay_every_sec 30     (onlarda 25)
+  BROLL_SAMPLE      420    (onlarda 320)
+
+>>> broll release'ine EN AZ 500 klip koy. 420'den az klip varsa sistem
+    elindekini kullanir ama tekrara baslar.
+
+Kisa video (3-5 dakika) istiyorsan channel.json'da iki degeri degistir:
+  "body_cut": 3.4
+  "overlay_every_sec": 25
+
+RENDER SURESI: 75-100 dakika. Is siniri 330 dakika, sorun degil.
+DOSYA BOYUTU: ~1 GB civari, GitHub'in 2 GB sinirinin altinda.
+
+
+ADIM 1 — DEPO
+-------------
+"Add a README" isaretlediysen push ederken "unrelated histories" ya da
+"Newer commits on remote" hatasi cikacak. Pull / Fetch'e BASMA, Cancel de:
+
+  Repository -> Open in Command Prompt   (Ctrl + `)
+  git push --force origin main
+
+Enter, sonra GitHub Desktop'ta Ctrl + R.
+
+
+ADIM 2 — DOSYALARI KOPYALA
+--------------------------
+Bu zip'in icindekileri (OKU.txt haric) depo klasorune kopyala.
+
+Klasorde su kalmali:
+  .git  .github  assets  content  scripts  .gitignore  channel.json
+
+.github ve content Windows'ta gizli gorunebilir — Explorer'da
+"Hidden items" kutusunu ac.
+
+GitHub Desktop -> Summary: "ilk kurulum" -> Commit to main -> Push origin
+
+
+ADIM 3 — IZIN (sart)
+--------------------
+Settings -> Actions -> General -> en altta "Workflow permissions"
+"Read and write permissions" sec -> Save
+
+Bu olmadan video render edilir ama Release'e yuklenemez.
+
+
+ADIM 4 — STOK VIDEOLAR
+----------------------
+Releases -> Create a new release
+  Tag / Title : broll
+  Dosya       : Jaguars stok videolarini surukle (en az 500)
+  ---> "Publish release"   ("Save draft" e BASMA)
+
+Bir release'e 1000 dosya siginiyor, dolunca broll2 ac — sistem broll ile
+baslayan butun release'leri tek havuz sayiyor.
+
+Istege bagli:  music   ambient   photos
+
+music'e hem mp3 hem wav atabilirsin, sistem kopyalari birlestiriyor.
+28 dakikalik video icin en az 10-12 parca koy.
+
+
+ADIM 5 — ILK VIDEO
+------------------
+Ses otomasyonunda kanal listesine ekle, depo adi: Jaguar-Floor
+
+Render kaydinda goreceklerin:
+  STOK HAVUZU: ... klipten 420 tanesi bu video icin secildi
+  [assemble] b-roll: ... clips (offset ...)
+  [assemble] sahne cesitliligi: ... farkli cekim ailesi
+  [assemble] music bed: ... parca, ... kez eklendi
+  [assemble] DONE -> work/final.mp4
+
+"b-roll: 0 clips" yaziyorsa broll release'i taslakta kalmis demektir.
+
+
+TEMPO AYARLARI
+--------------
+Ilk videoyu izledikten sonra oynayabilecegin uc deger:
+  "hook_cut": 2.8           acilisin kesim hizi
+  "body_cut": 3.9           govdenin kesim hizi (dusuk = daha hizli)
+  "overlay_every_sec": 30   ekrana yazi gelme sikligi
+
+
+ISTEGE BAGLI — TEK OYUNCUYA OZEL HAVUZ
+--------------------------------------
+  Release tag : oyuncu-trevor-lawrence  (ya da takim-jacksonville-jaguars)
+  Icine en az 12 klip koy, Publish et.
+Metinde o isim en cok geciyorsa video sadece o havuzdan kurulur.
